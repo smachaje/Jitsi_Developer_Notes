@@ -9,7 +9,9 @@ Feature layout
 When adding a new feature, this would be the usual layout.
 
 react/features/sample/
+
 ├── actionTypes.js
+
 ├── actions.js
 ├── components
 │   ├── AnotherComponent.js

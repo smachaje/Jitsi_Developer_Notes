@@ -1,0 +1,35 @@
+docker run -p 80:80 -p443:443 -it ubuntu:18.04
+
+apt update
+
+apt install vim
+apt install curl
+apt install gpg
+
+apt install nginx
+service nginx start
+
+#On Mac in browser:
+#http://127.0.0.1/
+# At this point nginx is running http from docker to Mac host
+
+curl https://download.jitsi.org/jitsi-key.gpg.key |  sh -c 'gpg --dearmor > /usr/share/keyrings/jitsi-keyring.gpg'
+
+
+echo 'deb [signed-by=/usr/share/keyrings/jitsi-keyring.gpg] https://download.jitsi.org stable/' | tee /etc/apt/sources.list.d/jitsi-stable.list > /dev/null
+
+
+apt update
+
+apt install jitsi-meet
+
+
+service prosody start
+service jicofo start
+service jitsi-videobridge2 start
+
+nginx -t && nginx -s reload
+
+# On Mac in browser:
+# https://localhost/
+# https://127.0.0.1/

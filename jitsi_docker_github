@@ -26,3 +26,6 @@ mkdir -p ~/.jitsi-meet-cfg/{web/letsencrypt,transcripts,prosody/config,prosody/p
 	
 	Run docker-compose up -d
 	Access the web UI at https://localhost:8443 
+
+
+docker cp qcs-custom-buttons.tar.gz docker-jitsi-meet_web_1:/tmp/

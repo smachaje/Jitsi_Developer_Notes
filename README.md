@@ -8,15 +8,15 @@ Feature layout
 
 When adding a new feature, this would be the usual layout.
 
-react/features/sample/
-├── actionTypes.js
-├── actions.js
-├── components
-│   ├── AnotherComponent.js
-│   ├── OneComponent.js
-│   └── index.js
-├── middleware.js
-└── reducer.js
+react/features/sample/<br />
+├ actionTypes.js<br />
+├ actions.js<br />
+├ components<br />
+├── AnotherComponent.js<br />
+├── OneComponent.js<br />
+└── index.js<br />
+├ middleware.js<br />
+└ reducer.js<br />
 
 The middleware must be imported in react/features/app/ specifically in middlewares.any, middlewares.native.js or middlewares.web.js where appropriate. Likewise for the reducer.
 

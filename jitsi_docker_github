@@ -28,4 +28,15 @@ mkdir -p ~/.jitsi-meet-cfg/{web/letsencrypt,transcripts,prosody/config,prosody/p
 	Access the web UI at https://localhost:8443 
 
 
+Applying custom jitsi code:
+
 docker cp qcs-custom-buttons.tar.gz docker-jitsi-meet_web_1:/tmp/
+
+#open web image command line
+cd /usr/share/jitsi-meet
+rm -rf *
+# transcripts directory will not move (must be mounted somewhere else)
+tar -xzf /tmp/qcs-custom-buttons.tar.gz
+cd /usr/share/qcs-custom-buttons
+mv * ../jitsi-meet/
+# restart the docker-jitsi-meet_web_1 app in docker GUI

@@ -1,0 +1,27 @@
+mac# - command line in Mac terminal
+d# - command line in docker image
+
+1. Download Jitsi meet sources
+mac# git clone https://github.com/jitsi/jitsi.git
+
+mac# cd jitsi 
+mac# ls
+CONTRIBUTING.md build.xml       nbproject       test
+LICENSE         lib             resources       web-start
+README.md       m2              src
+
+2. Modify docker files to mount /developer to Mac src
+mac# vi web/Dockerfile
+...
+
+VOLUME ["/config", "/etc/letsencrypt", "/usr/share/jitsi-meet/transcripts", "/developer"]
+
+mac# vi docker-compose.yml
+
+ volumes:
+            - ${CONFIG}/web:/config:Z
+            - ${CONFIG}/web/letsencrypt:/etc/letsencrypt:Z
+            - ${CONFIG}/transcripts:/usr/share/jitsi-meet/transcripts:Z
+            - /Users/machajes/git/jitsi:/developer:Z
+            
+ 

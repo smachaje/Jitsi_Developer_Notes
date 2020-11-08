@@ -14,14 +14,15 @@ README.md       m2              src
 mac# vi web/Dockerfile
 ...
 
-VOLUME ["/config", "/etc/letsencrypt", "/usr/share/jitsi-meet/transcripts", "/developer"]
+#removing transcripts as a mount so we can easily copy jitsi-meet app after compilting it from /developer
+VOLUME ["/config", "/etc/letsencrypt", "/developer"]
 
 mac# vi docker-compose.yml
 
  volumes:
             - ${CONFIG}/web:/config:Z
             - ${CONFIG}/web/letsencrypt:/etc/letsencrypt:Z
-            - ${CONFIG}/transcripts:/usr/share/jitsi-meet/transcripts:Z
+        
             - /Users/machajes/git/jitsi:/developer:Z
             
  

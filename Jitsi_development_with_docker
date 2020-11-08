@@ -134,4 +134,11 @@ You may have to accept a self-signed certificate in your browser.  You do not ha
 Each time you resetart docker, your "server" directory, so code stored on the Mac/host will mount over the default jitsi-meet that comes with docker distribution.  
 You can edit jitsi code on your Mac without docker running.  As long as you keep deploying the code to "server" directory, the next time docker runs it will have the laest code.
 
+10. Uninstall
+a. Stop and delete docker containers in GUI or with docker commands
+b. rm -rf /Users/machajes/git/jitsi/*
+c. rm -rf ~/.jitsi-meet-cfg
 
+10. Troubleshooting
+"Unfortunately, something went wrong." error when trying to join a room
+Delete ~/.jitsi-meet-cfg/ config files in the user home directory.  Re-run mkdir from step #3 above.

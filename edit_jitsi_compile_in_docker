@@ -63,7 +63,8 @@ Create required CONFIG directories
 
 mac#    mkdir -p ~/.jitsi-meet-cfg/{web/letsencrypt,transcripts,prosody/config,prosody/prosody-plugins-custom,jicofo,jvb,jigasi,jibri}
             
-            
+Start the docker system:
+mac# docker-compose up -d
             
  1. MAC - install nodejs
  https://nodejs.org/en/download/
@@ -78,3 +79,6 @@ mac# npm update && npm install
 
 make
 make source-package
+
+tar -xvf ...bz2
+

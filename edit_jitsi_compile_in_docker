@@ -134,4 +134,3 @@ Each time you resetart docker, your "server" directory, so code stored on the Ma
 You can edit jitsi code on your Mac without docker running.  As long as you keep deploying the code to "server" directory, the next time docker runs it will have the laest code.
 
 
-

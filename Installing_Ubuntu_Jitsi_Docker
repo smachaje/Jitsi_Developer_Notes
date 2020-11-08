@@ -9,9 +9,9 @@ apt install gpg
 apt install nginx
 service nginx start
 
-#On Mac in browser:
+#In the browser:
 #http://127.0.0.1/
-# At this point nginx is running http from docker to Mac host
+# At this point nginx is running http/80 on docker container
 
 curl https://download.jitsi.org/jitsi-key.gpg.key |  sh -c 'gpg --dearmor > /usr/share/keyrings/jitsi-keyring.gpg'
 
@@ -30,6 +30,6 @@ service jitsi-videobridge2 start
 
 nginx -t && nginx -s reload
 
-# On Mac in browser:
+# In browser:
 # https://localhost/
 # https://127.0.0.1/

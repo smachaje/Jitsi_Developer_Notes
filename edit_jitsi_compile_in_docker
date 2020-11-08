@@ -1,8 +1,10 @@
-mac# - command line in Mac terminal
-d# - command line in docker image
+my project directory: /Users/machajes/git/jitsi
 
-1. Download Jitsi meet sources
-mac# git clone https://github.com/jitsi/jitsi-meet.git
+1. Start in the project directory
+# cd /Users/machajes/git/jitsi
+
+2. Download jitsi-meet sources
+# git clone https://github.com/jitsi/jitsi-meet.git
 
 mac# cd jitsi-meet 
 mac# ls
@@ -22,10 +24,8 @@ config.js               ios                     title.html
 connection.js           lang                    twa
 connection_optimization logging_config.js       webpack.config.js
 
-1. Download docker jitsi environment
-mac# git clone https://github.com/jitsi/docker-jitsi-meet.git
-
-mac# ls 
+3. Download docker jitsi environment
+# git clone https://github.com/jitsi/docker-jitsi-meet.git
 # cd docker-jitsi-meet 
 # ls
 CHANGELOG.md       docker-compose.yml jibri              prosody
@@ -35,50 +35,103 @@ README.md          etherpad.yml       jigasi             web
 base               examples           jigasi.yml
 base-java          gen-passwords.sh   jvb
 
-2. Modify docker files to mount /developer to Mac src
-mac# vi web/Dockerfile
+2. Modify docker files to mount /usr/share/jitsi-meet to Mac server directory in our project folder.  Add the /usr/share/jitsi-meet references to two files.
+# vi web/Dockerfile
 ...
 
-#removing transcripts as a mount so we can easily copy jitsi-meet app after compilting it from /developer
-VOLUME ["/config", "/etc/letsencrypt", "/developer"]
+VOLUME ["/config", "/etc/letsencrypt", "/usr/share/jitsi-meet/transcripts","/usr/share/jitsi-meet"]
 
-mac# vi docker-compose.yml
+# vi docker-compose.yml
 
  volumes:
             - ${CONFIG}/web:/config:Z
             - ${CONFIG}/web/letsencrypt:/etc/letsencrypt:Z
-        
-            - /Users/machajes/git/jitsi:/developer:Z
+            - ${CONFIG}/transcripts:/usr/share/jitsi-meet/transcripts:Z
+            - /Users/machajes/git/jitsi/server:/usr/share/jitsi-meet:Z
             
 
 Create a .env file by copying and adjusting env.example
 
-mac#    cp env.example .env
+# cp env.example .env
 
 Set strong passwords in the security section options of .env file by running the following bash script
 
-mac#    ./gen-passwords.sh
+# ./gen-passwords.sh
 
 Create required CONFIG directories
 
-mac#    mkdir -p ~/.jitsi-meet-cfg/{web/letsencrypt,transcripts,prosody/config,prosody/prosody-plugins-custom,jicofo,jvb,jigasi,jibri}
-            
-Start the docker system:
-mac# docker-compose up -d
-            
- 1. MAC - install nodejs
- https://nodejs.org/en/download/
+# mkdir -p ~/.jitsi-meet-cfg/{web/letsencrypt,transcripts,prosody/config,prosody/prosody-plugins-custom,jicofo,jvb,jigasi,jibri}
+           
+           
+3. Start the docker system:
+# docker-compose up -d
+
+# docker container ls -a
+CONTAINER ID        IMAGE                  COMMAND             CREATED              STATUS              PORTS                                              NAMES
+b354a1a7e263        jitsi/jicofo:latest    "/init"             About a minute ago   Up About a minute                                                      docker-jitsi-meet_jicofo_1
+09f1af240158        jitsi/jvb:latest       "/init"             About a minute ago   Up About a minute   0.0.0.0:4443->4443/tcp, 0.0.0.0:10000->10000/udp   docker-jitsi-meet_jvb_1
+c741f33d06ab        jitsi/prosody:latest   "/init"             About a minute ago   Up About a minute   5222/tcp, 5280/tcp, 5347/tcp                       docker-jitsi-meet_prosody_1
+be7b519ae31a        jitsi/web:latest       "/init"             About a minute ago   Up About a minute   0.0.0.0:8000->80/tcp, 0.0.0.0:8443->443/tcp        docker-jitsi-meet_web_1
+
+
+4. Prepare Mac dev environment
+MAC - install nodejs from https://nodejs.org/en/download/
  
-mac# >node -v
+# node -v
 v14.15.0
-mac# npm -v
+# npm -v
 6.14.8
 
-mac# cd ~/jitsi-meet/
-mac# npm update && npm install
+5. At this point you can edit the jitsi UI in jitsi-meet directory.  Next, let's recompile and deploy the site.
 
-make
-make source-package
+# cd /Users/machajes/git/jitsi
+# cd jitsi-meet
+# npm update && npm install
 
-tar -xvf ...bz2
+# make
+# make source-package
+
+
+# ls jitsi-meet.tar.bz2
+jitsi-meet.tar.bz2
+
+The bz2 compressed file had about 33MB of data compressed to less than 10MB.  It can be transferred to a remote server or to our local docker container.
+
+6. Deploy the newly compiled site to the docker container
+# pwd
+/Users/machajes/git/jitsi/jitsi-meet
+# cd ../temp
+# rm -rf *
+# tar -xf ../jitsi-meet/jitsi-meet.tar.bz2 
+# cd ../server
+# rm -rf *
+# mv ../temp/jitsi-meet/* .
+
+# pwd
+/Users/machajes/git/jitsi/server
+# ls
+ConferenceEvents.js     css                     libs
+LICENSE                 favicon.ico             logging_config.js
+analytics-ga.js         fonts                   metro.config.js
+app.js                  head.html               plugin.head.html
+base.html               images                  pwa-worker.js
+body.html               index.android.js        robots.txt
+conference.js           index.html              sounds
+config.js               index.ios.js            static
+connection.js           interface_config.js     title.html
+connection_optimization lang                    webpack.config.js
+
+Same process with relative commands to the project directory:
+# cd /Users/machajes/git/jitsi
+# rm -rf temp/*
+# rm -rf server/*
+# tar -xvf jitsi-meet/jitsi-meet.tar.bz2 -C temp
+# mv temp/jitsi-meet/* server/
+
+7. Navigate to https://localhost:8443/
+You may have to accept a self-signed certificate in your browser.  You do not have to restart the server for changes to be visible.
+Each time you resetart docker, your "server" directory, so code stored on the Mac/host will mount over the default jitsi-meet that comes with docker distribution.  
+You can edit jitsi code on your Mac without docker running.  As long as you keep deploying the code to "server" directory, the next time docker runs it will have the laest code.
+
+
 

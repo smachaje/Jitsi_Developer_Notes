@@ -2,13 +2,38 @@ mac# - command line in Mac terminal
 d# - command line in docker image
 
 1. Download Jitsi meet sources
-mac# git clone https://github.com/jitsi/jitsi.git
+mac# git clone https://github.com/jitsi/jitsi-meet.git
 
-mac# cd jitsi 
+mac# cd jitsi-meet 
 mac# ls
-CONTRIBUTING.md build.xml       nbproject       test
-LICENSE         lib             resources       web-start
-README.md       m2              src
+CONTRIBUTING.md         css                     manifest.json
+ConferenceEvents.js     debian                  metro.config.js
+LICENSE                 doc                     modules
+Makefile                favicon.ico             package-lock.json
+README.md               flow-typed              package.json
+SECURITY.md             fonts                   plugin.head.html
+analytics-ga.js         head.html               pwa-worker.js
+android                 images                  react
+app.js                  index.android.js        resources
+base.html               index.html              service
+body.html               index.ios.js            sounds
+conference.js           interface_config.js     static
+config.js               ios                     title.html
+connection.js           lang                    twa
+connection_optimization logging_config.js       webpack.config.js
+
+1. Download docker jitsi environment
+mac# git clone https://github.com/jitsi/docker-jitsi-meet.git
+
+mac# ls 
+# cd docker-jitsi-meet 
+# ls
+CHANGELOG.md       docker-compose.yml jibri              prosody
+LICENSE            env.example        jibri.yml          release.sh
+Makefile           etherpad           jicofo             resources
+README.md          etherpad.yml       jigasi             web
+base               examples           jigasi.yml
+base-java          gen-passwords.sh   jvb
 
 2. Modify docker files to mount /developer to Mac src
 mac# vi web/Dockerfile

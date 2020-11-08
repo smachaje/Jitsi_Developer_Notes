@@ -50,4 +50,31 @@ mac# vi docker-compose.yml
         
             - /Users/machajes/git/jitsi:/developer:Z
             
+
+Create a .env file by copying and adjusting env.example
+
+mac#    cp env.example .env
+
+Set strong passwords in the security section options of .env file by running the following bash script
+
+mac#    ./gen-passwords.sh
+
+Create required CONFIG directories
+
+mac#    mkdir -p ~/.jitsi-meet-cfg/{web/letsencrypt,transcripts,prosody/config,prosody/prosody-plugins-custom,jicofo,jvb,jigasi,jibri}
+            
+            
+            
+ 1. MAC - install nodejs
+ https://nodejs.org/en/download/
  
+mac# >node -v
+v14.15.0
+mac# npm -v
+6.14.8
+
+mac# cd ~/jitsi-meet/
+mac# npm update && npm install
+
+make
+make source-package

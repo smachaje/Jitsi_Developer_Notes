@@ -69,3 +69,12 @@ https://dev.to/metamodal/add-jitsi-meet-to-your-react-app-33j9
 Sandbox:
 https://codesandbox.io/s/react-jitsi-demo-qjoei?module=%2Fsrc%2FVideoConference.jsx
 
+Video walkthrough of the iframe integration:
+https://www.youtube.com/watch?v=d67z7FrP-Hs
+
+ Put video where your engagement is.:
+ https://www.8x8.com/8/ebook-2020-summer/cpaas-essentials/chapter-2?locale=us
+
+This descibes the configuration for the Les Grands Voisins video-chat server.
+https://hackmd.io/@lesgrandsvoisins/SJs4b0dO8
+

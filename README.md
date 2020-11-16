@@ -27,6 +27,7 @@ This has not always been the case and the entire codebase hasn't been migrated t
 When working on an old feature, adding the necessary changes to migrate to the new model is encouraged.
 
 https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-contributing#feature-layout
+https://github.com/jitsi/jitsi-meet/blob/master/doc/examples/api.html
 
 REST API |  jitsi-meet/resources/cloud-api.swagger 
 https://app.swaggerhub.com/apis/smachaje/SwaggerVideo/1.0.0
@@ -57,3 +58,7 @@ https://www.youtube.com/watch?v=3yqDxhR2XxE
 
 Developer forum:
 https://community.jitsi.org/c/dev/6
+
+Jitsi Meet React Component
+An unofficial React component which wraps the standard Jitsi Meet JS API. It is written in Typescript to help you configure the library with ease, and get your super important meetings up and going, in a blink of an eye.
+https://www.npmjs.com/package/react-jitsi

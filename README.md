@@ -62,3 +62,10 @@ https://community.jitsi.org/c/dev/6
 Jitsi Meet React Component
 An unofficial React component which wraps the standard Jitsi Meet JS API. It is written in Typescript to help you configure the library with ease, and get your super important meetings up and going, in a blink of an eye.
 https://www.npmjs.com/package/react-jitsi
+
+React tutorial:
+https://dev.to/metamodal/add-jitsi-meet-to-your-react-app-33j9
+
+Sandbox:
+https://codesandbox.io/s/react-jitsi-demo-qjoei?module=%2Fsrc%2FVideoConference.jsx
+
